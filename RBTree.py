@@ -9,7 +9,7 @@ class Node:
 
 class RBTree:
     def __init__(self):
-        self.nil = Node(0)
+        self.nil = Node("")
         self.nil.color = "black"
         self.nil.left = None
         self.nil.right = None
