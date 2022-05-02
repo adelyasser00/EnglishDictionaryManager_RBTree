@@ -1,7 +1,5 @@
-import astropy
 
 from RBTree import *
-
 
 class EngDict:
 
