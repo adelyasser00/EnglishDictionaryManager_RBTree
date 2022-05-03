@@ -22,7 +22,6 @@ class RBTree:
         else:
             return max(self.height(node.left), self.height(node.right)) + 1
 
-    # Method has problems, fix later
     def inOrderTraversal(self, node):
         if node != self.nil:
             self.inOrderTraversal(node.left)
@@ -32,7 +31,7 @@ class RBTree:
     def inOrderWrite(self, node, file):
         if node != self.nil:
             self.inOrderWrite(node.left, file)
-            file.write(node.value + "\n")
+            file.writelines(node.value + "\n")
             self.inOrderWrite(node.right, file)
 
     def insert(self, value):
@@ -44,7 +43,7 @@ class RBTree:
         self.size += 1
         # then, we place the node in the tree according to the value
         x = self.root
-        y = self.nil
+        y = None
         while x != self.nil:
             # move down the tree until we reach the target leaf node
             y = x
@@ -55,7 +54,7 @@ class RBTree:
 
         node.parent = y
         # handle if node is the root element of the tree
-        if y == self.nil:
+        if y == None:
             self.root = node
         # otherwise, link correctly to the parent
         elif node.value.lower() < y.value.lower():
@@ -64,11 +63,11 @@ class RBTree:
             y.right = node
 
         # color the root black
-        if node.parent == self.nil:
+        if node.parent == None:
             node.color = "black"
             return
         # when new node is a red child of the root, need not do any fix
-        if node.parent.parent == self.nil:
+        if node.parent.parent == None:
             return
         # finally, fix the tree from insertion operation
         self.fix(node)
@@ -80,12 +79,17 @@ class RBTree:
                 uncle = node.parent.parent.right
                 # Case 1: red uncle. Recolor parent, uncle and grandparent
                 if uncle.color == "red":
-                    node.parent.color = uncle.color = "black"
+                    node.parent.color = "black"
+                    uncle.color = "black"
                     node.parent.parent.color = "red"
                     # After recoloring, recursively check the grandparent node for any tree fixes
                     node = node.parent.parent
-                    if node.parent.parent == self.nil:
+                    if not node.parent:
+                        self.root.color = "black"
                         return
+                    if not node.parent.parent :
+                        return
+
                 else:
                     # Case 2: black uncle, triangle case, rotate parent and switch to case 3
                     if node is node.parent.right:
@@ -102,12 +106,17 @@ class RBTree:
                 uncle = node.parent.parent.left
                 # Case 1: red uncle. Recolor parent, uncle and grandparent
                 if uncle.color == "red":
-                    node.parent.color = uncle.color = "black"
+                    node.parent.color = "black"
+                    uncle.color = "black"
                     node.parent.parent.color = "red"
                     # After recoloring, recursively check the grandparent node for any tree fixes
                     node = node.parent.parent
-                    if node.parent.parent == self.nil:
+                    if not node.parent:
+                        self.root.color = "black"
                         return
+                    if not node.parent.parent :
+                        return
+
                 else:
                     # Case 2: black uncle, triangle case, rotate parent and switch to case 3
                     if node is node.parent.left:
@@ -148,7 +157,7 @@ class RBTree:
                 y.right.parent = x
             # x's parent becomes y's parent
             y.parent = x.parent
-            if x.parent is self.nil:
+            if x.parent is None:
                 self.root = y
             elif x == x.parent.left:
                 x.parent.left = y
@@ -161,3 +170,19 @@ class RBTree:
         else:
             # if specified direction is incorrect, return.
             return
+
+
+"""
+test red black tree
+bst = RBTree()
+
+bst.insert("A")
+bst.insert("B")
+bst.insert("C")
+bst.insert("D")
+bst.insert("E")
+bst.insert("F")
+bst.insert("G")
+bst.insert("H")
+
+bst.inOrderTraversal(bst.root)"""

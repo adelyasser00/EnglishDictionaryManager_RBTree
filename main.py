@@ -29,7 +29,7 @@ def DictionaryFunctionality():
 
             elif choice == 4:
                 f = open(filename, "w")
-                f.close ()
+                f.close()
                 f = open(filename, "a")
                 dictionary.RBtree.inOrderWrite(dictionary.RBtree.root, f)
                 f.close()
@@ -43,7 +43,6 @@ def DictionaryFunctionality():
 
         except ValueError as e:
             print("Not a valid choice")
-
 
 
 
