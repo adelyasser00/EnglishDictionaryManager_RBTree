@@ -29,11 +29,11 @@ class RBTree:
             print(node.value)
             self.inOrderTraversal(node.right)
 
-    def inOrderWrite(self, node,file):
+    def inOrderWrite(self, node, file):
         if node != self.nil:
-            self.inOrderTraversal(node.left)
-            file.write(node.value)
-            self.inOrderTraversal(node.right)
+            self.inOrderWrite(node.left, file)
+            file.write(node.value + "\n")
+            self.inOrderWrite(node.right, file)
 
     def insert(self, value):
         # first, we make a new node and increase the tree size by 1
