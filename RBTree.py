@@ -173,7 +173,7 @@ class RBTree:
 
 
 """
-test red black tree 
+test red black tree  
 bst = RBTree()
 
 bst.insert("A")
