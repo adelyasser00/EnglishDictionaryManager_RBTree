@@ -46,7 +46,10 @@ def DictionaryFunctionality():
 
 
 
-
+# Calling main program method
 DictionaryFunctionality()
+
+# Our used dictionary file name for easy access
 #filename = "EN-US-Dictionary.txt"
+
 

@@ -22,6 +22,14 @@ class RBTree:
         else:
             return max(self.height(node.left), self.height(node.right)) + 1
 
+    def bHeight(self,node,count):
+        if node == self.nil:
+            return count+1
+        elif node.color == "black":
+            count +=1
+        return self.bHeight(node.left,count)
+
+
     def inOrderTraversal(self, node):
         if node != self.nil:
             self.inOrderTraversal(node.left)
@@ -171,18 +179,3 @@ class RBTree:
             # if specified direction is incorrect, return.
             return
 
-
-"""
-test red black tree  
-bst = RBTree()
-
-bst.insert("A")
-bst.insert("B")
-bst.insert("C")
-bst.insert("D")
-bst.insert("E")
-bst.insert("F")
-bst.insert("G")
-bst.insert("H")
-
-bst.inOrderTraversal(bst.root)"""
